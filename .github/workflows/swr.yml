@@ -1,0 +1,26 @@
+name: jump to SWR
+on:
+  workflow_dispatch:
+    inputs:
+      repository:
+        description: 'image repository name'
+        required: true
+        type: string
+      tag:
+        description: 'image tag'
+        required: false
+        type: string
+        default: 'latest'
+jobs:
+  checkimage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: jumpjump
+        uses: wsadkjhl/jump@main
+        with:
+          ak: "${{ secrets.HW_AK }}"
+          sk: "${{ secrets.HW_SK }}"
+          ns: "${{ vars.SWR_NS }}"
+          region: "${{ vars.SWR_REGION }}"
+          repository: "${{ inputs.repository }}"
+          tag: "${{ inputs.tag }}"
